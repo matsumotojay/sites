@@ -139,6 +139,38 @@ body{margin:0;background:#fff}
 .site[data-how="cards"] .s-chat{display:none}
 .site:not([data-how="cards"]) .s-steps{display:none}
 @media (prefers-reduced-motion:reduce){.ld{animation:none}}
+/* plan terms: month track + two icon cards */
+.s-terms{margin:22px auto 0;max-width:680px}
+.s-track{display:grid;grid-template-columns:3fr 3fr 1.3fr;gap:6px;align-items:start}
+.s-track .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.s-track .seg.end{grid-template-columns:1fr}
+.s-track span{display:grid;place-items:center;height:38px;border-radius:12px;font:800 14px/1 var(--body)}
+.s-track .min span{background:var(--acc);color:#fff}
+.s-track .mtm span{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--acc);border:0}
+.s-track .mtm span:last-child{box-shadow:inset 0 0 0 1.5px rgba(255,90,54,.45);color:var(--soft)}
+.s-track .file{background:var(--ink);color:#fff}
+.s-track .file svg{width:20px;height:20px}
+.s-track em{grid-column:1/-1;font:700 12px/1.25 var(--body);font-style:normal;color:var(--soft);text-align:center;padding-top:2px}
+.s-track .min em{color:var(--acc)}
+.s-tcards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tc{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 1px 0 var(--line),0 10px 26px rgba(26,29,36,.07)}
+.tc i{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--peach);color:var(--acc)}
+.tc i svg{width:22px;height:22px}
+.tc p{margin:0;font-size:15px;line-height:1.35}
+.tc b{font-weight:800}
+.js .s-track span{opacity:0;transform:scale(.6);transition:opacity .35s ease,transform .45s cubic-bezier(.2,1.4,.4,1)}
+.js .s-terms.in .s-track span{opacity:1;transform:none}
+.js .s-terms.in .s-track .seg span:nth-child(2){transition-delay:.08s}.js .s-terms.in .s-track .seg span:nth-child(3){transition-delay:.16s}
+.js .s-terms.in .s-track .mtm span{transition-delay:.3s}.js .s-terms.in .s-track .mtm span:nth-child(2){transition-delay:.38s}.js .s-terms.in .s-track .mtm span:nth-child(3){transition-delay:.46s}
+.js .s-terms.in .s-track .end span{transition-delay:.6s}
+@media (prefers-reduced-motion:reduce){.js .s-track span{opacity:1;transform:none;transition:none}}
+/* hero highlighter: sweeps in, holds, slides away, repeats. Background only, so no text moves. */
+.s-hero .hl{color:var(--ink);padding:.05em .18em;margin:0 -.18em;border-radius:.25em;-webkit-box-decoration-break:slice;box-decoration-break:slice;
+  background:linear-gradient(#FFF1A8,#FFF1A8) no-repeat 0 0/0% 100%;animation:hlSweep 5.5s cubic-bezier(.6,.05,.3,1) 1.4s infinite}
+@keyframes hlSweep{0%{background-size:0% 100%;background-position:0 0}18%{background-size:100% 100%;background-position:0 0}64%{background-size:100% 100%;background-position:100% 0}
+  80%{background-size:0% 100%;background-position:100% 0}100%{background-size:0% 100%;background-position:100% 0}}
+.site[data-banner="ink"] .s-hero .hl{color:#fff;background-image:linear-gradient(rgba(255,90,54,.92),rgba(255,90,54,.92))}
+@media (prefers-reduced-motion:reduce){.s-hero .hl{animation:none;background-size:100% 100%}}
 /* motion: transform and opacity only, so nothing on the page moves or jumps */
 .s-hero h1 .w{display:inline-block;animation:wordUp .7s cubic-bezier(.2,.8,.2,1) both}
 .s-hero h1 .w:nth-child(2){animation-delay:.08s}.s-hero h1 .w:nth-child(3){animation-delay:.16s}.s-hero h1 .w:nth-child(4){animation-delay:.28s}
@@ -235,7 +267,7 @@ body{margin:0;background:#fff}
 .s-stats div{background:#fff;border-radius:var(--r);padding:20px 18px;box-shadow:0 1px 0 var(--line)}
 .s-stats b{display:block;font:var(--dw) clamp(48px,6cqi,72px)/1 var(--disp);letter-spacing:var(--ls);color:var(--acc)}
 .s-stats span{display:block;margin-top:10px;font-size:15.5px;line-height:1.45}
-.s-src{margin:14px 0 0;font-size:12.5px;color:var(--soft);max-width:80ch}
+.s-src{margin:12px 0 0;font-size:10.5px;line-height:1.4;color:var(--soft);opacity:.8;max-width:80ch}
 .s-src a{color:inherit}
 .s-faq{display:grid;gap:10px;max-width:820px}
 .s-faq details{background:var(--peach);border-radius:16px;padding:0 18px}
@@ -258,7 +290,9 @@ body{margin:0;background:#fff}
 
 .s-end{padding:clamp(56px,9cqi,120px) var(--pad);background:var(--acc);color:#fff}
 .s-end h2{font:var(--dw) clamp(40px,6.4cqi,82px)/.96 var(--disp);letter-spacing:var(--ls);margin:0 0 26px;max-width:14ch;text-wrap:balance}
-.s-end p{margin:0 0 26px;font-size:18px;opacity:.92}
+.s-end h2{margin-bottom:18px}
+.s-end h2 u{text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.12em;text-decoration-color:rgba(255,255,255,.9)}
+.s-end p{margin:0 0 26px;font-size:18px;line-height:1.5;opacity:.95;max-width:44ch}
 .s-end .btn{background:#fff;color:var(--ink);box-shadow:0 10px 24px rgba(0,0,0,.18)}
 
 @container site (max-width:860px){
@@ -280,6 +314,9 @@ body{margin:0;background:#fff}
   .s-tile img{aspect-ratio:4/5;border-radius:12px}
   .s-tile figcaption{font-size:12.5px}
   .s-steps{grid-template-columns:1fr}
+  .s-tcards{grid-template-columns:1fr}
+  .s-track span{height:34px;font-size:13px;border-radius:10px}
+  .s-track em{font-size:11px}
   .s-stats{grid-template-columns:1fr}
   .s-stats div{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;padding:16px}
   .s-stats b{font-size:44px}
@@ -326,7 +363,7 @@ body{margin:0;background:#fff}
     <div class="s-hero-in">
       <div class="s-hero-txt">
         <h1><span class="w">Your</span> <span class="w">business</span> <span class="w">deserves</span> <span class="w hi">a website.</span></h1>
-        <p class="rise r1"><b>I build your site first and text it to you.</b> If you like it, we put it live on your own web address. If you don't, you owe nothing.</p>
+        <p class="rise r1"><b class="hl">I build your site first and text it to you.</b> If you like it, we put it live on your own web address. If you don't, you owe nothing.</p>
         <div class="s-acts rise r2">
           <a class="btn" href="sms:+13109512318"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Text Jay<span class="num">&nbsp;(310) 951-2318</span></a>
           <a class="btn ghost" href="#prices">See prices</a>
@@ -383,7 +420,7 @@ body{margin:0;background:#fff}
         <div class="s-step"><b>3</b><div><strong>You pay when it goes live</strong><span>Secure link on launch day, card or bank. Split the setup in 3 if you like. Zelle or check works for the setup.</span></div></div>
         <div class="msg me"><p>Perfect. Let's go live.</p></div>
         <div class="msg them typing"><p>Here's your secure payment link. Card, bank, or split the setup in 3.</p></div>
-        <div class="s-step"><b>4</b><div><strong>It's yours</strong><span>Your domain is in your name. Not happy in the first month? Full refund of your one-time setup price.</span></div></div>
+        <div class="s-step"><b>4</b><div><strong>It's yours</strong><span>Your domain is in your name. Not happy in the first month? You get everything back, setup included.</span></div></div>
         <div class="msg them typing live"><p><span class="ld" aria-hidden="true"></span>You're live at yourbusiness.com</p></div>
         <div class="msg me"><p>Thank you!!</p></div>
       </div>
@@ -392,9 +429,14 @@ body{margin:0;background:#fff}
       <li><div><b>I build your site first</b><span>From your Google listing, reviews and photos. No cost, no commitment.</span></div></li>
       <li><div><b>You check it on your phone</b><span>Tell me what to change. Changes are done within 2 days.</span></div></li>
       <li><div><b>You pay when it goes live</b><span>Secure link on launch day, card or bank. Split the setup in 3 if you like. Zelle or check works for the setup.</span></div></li>
-      <li><div><b>It's yours</b><span>Your domain is in your name. Not happy in the first month? Full refund of your one-time setup price.</span></div></li>
+      <li><div><b>It's yours</b><span>Your domain is in your name. Not happy in the first month? You get everything back, setup included.</span></div></li>
     </ol>
-    <p class="s-fine"><b>3 months minimum, then month to month.</b> Whenever your plan ends, you get a free copy of your site files.</p>
+    <div class="s-terms" aria-label="Plan terms">
+      <div class="s-tcards">
+        <div class="tc"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></i><p><b>3 months minimum, then month to month.</b> Cancel anytime after that.</p></div>
+        <div class="tc"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l2.5 2.5"/></svg></i><p>Not happy in the first month? You get <b>everything back</b>, setup included.</p></div>
+      </div>
+    </div>
   </section>
 
   <section class="s-sec" id="prices">
@@ -450,13 +492,14 @@ body{margin:0;background:#fff}
       <details><summary>How long does it take?</summary><p>Once you OK it, it's live in about 2 business days. If your package includes a photo shoot, it's live about 2 business days after the shoot.</p></details>
       <details><summary>What does the monthly cover?</summary><p>Hosting, your domain, fixes and updates, and small changes like hours, holiday hours, promos and discounts, done within 2 business days.</p></details>
       <details><summary>Who owns the website?</summary><p>You do. Your domain is registered in your name, so it stays yours even if you leave. Every plan runs at least 3 months, and whenever it ends, you get a free copy of your site files.</p></details>
-      <details><summary>What if I don't like it?</summary><p>You don't pay anything until it's live and you like it. And if you're not happy in the first month, you get a full refund of your one-time setup price ($500, $1,000 or $2,000).</p></details>
+      <details><summary>What if I don't like it?</summary><p>You don't pay anything until it's live and you like it. Not happy in the first month? You get everything back, setup included. Not happy in month 2 or 3? We refund your plan fees for months 2 and 3. After 3 months, cancel anytime.</p></details>
       <details><summary>Can you guarantee more customers?</summary><p>No, and anyone who does is guessing. What I promise is a fast, good looking site that makes it easy for people to find you and reach you.</p></details>
     </div>
   </section>
 
   <section class="s-end">
-    <h2>Your business deserves a website. Let's build it.</h2>
+    <h2>Not having a website is losing you <u>customers and money</u>.</h2>
+    <p>It's <span class="yr">2026</span>, it's time your business finally gets a website. You focus on your business, and we'll handle the rest.</p>
     <a class="btn" href="sms:+13109512318">Text Jay</a>
   </section>
 </article>
@@ -499,17 +542,19 @@ body{margin:0;background:#fff}
     var t=id?document.getElementById(id):null;if(!t)return;
     if(stage.classList.contains('phone')){frame.scrollTo({top:t.offsetTop-60,behavior:'smooth'})}else{t.scrollIntoView({behavior:'smooth'})}
   })});
+  // keep the closing line's year current
+  site.querySelectorAll('.yr').forEach(function(y){y.textContent=new Date().getFullYear()});
   // motion: reveal on scroll (opacity/transform only) and count-up stats; nothing changes layout
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if('IntersectionObserver' in window&&!reduce){
     site.classList.add('js');
-    site.querySelectorAll('.s-sec .s-eye,.s-sec .s-h2,.s-lede,.s-steps li,.s-stats div,.c-wrap,.s-about>img,.s-facts div,.s-faq details,.s-end h2,.s-end .btn').forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=((i%4)*70)+'ms'});
+    site.querySelectorAll('.s-sec .s-eye,.s-sec .s-h2,.s-lede,.s-steps li,.s-stats div,.c-wrap,.s-about>img,.s-facts div,.s-faq details,.s-end h2,.s-end p,.s-end .btn,.s-terms').forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=((i%4)*70)+'ms'});
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
     site.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
     var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);
       var b=e.target,end=parseInt(b.getAttribute('data-n'),10),t0=null;
       function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1100);b.textContent=Math.round(end*(1-Math.pow(1-k,3)))+'%';if(k<1)requestAnimationFrame(step)}
-      requestAnimationFrame(step)})},{threshold:.6});
+      requestAnimationFrame(step);setTimeout(function(){b.textContent=end+'%'},1600)})},{threshold:.6});
     site.querySelectorAll('.s-stats b').forEach(function(b){var n=parseInt(b.textContent,10);if(!isNaN(n)){b.setAttribute('data-n',n);co.observe(b)}});
   }
   var chatEls=[].slice.call(site.querySelectorAll('.s-chat-body>*'));
