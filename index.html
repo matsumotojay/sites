@@ -105,7 +105,7 @@ body{margin:0;background:#fff}
 .s-chat-top b{display:block;font-size:15px;line-height:1.2}
 .s-chat-top small{color:var(--soft);font-size:12.5px}
 .s-chat-body{display:flex;flex-direction:column;gap:8px;padding:16px 14px 20px}
-.s-step{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;margin:12px 0 4px;padding:10px 12px;border-radius:14px;background:var(--sky)}
+.s-step{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:center;margin:10px 0 2px;padding:8px 12px;border-radius:14px;background:var(--sky)}
 .s-step:first-child{margin-top:0}
 .s-step>b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--acc);color:#fff;font:800 13px/1 var(--body)}
 .s-step strong{display:block;font-size:15.5px;line-height:1.25}
@@ -139,6 +139,14 @@ body{margin:0;background:#fff}
 .site[data-how="cards"] .s-chat{display:none}
 .site:not([data-how="cards"]) .s-steps{display:none}
 @media (prefers-reduced-motion:reduce){.ld{animation:none}}
+/* "Details" under the chat: the step-by-step fine print, one tap away */
+.s-howmore{max-width:440px;margin:12px auto 0;text-align:center}
+.s-howmore summary{display:inline-block;cursor:pointer;list-style:none;font:700 14px/1 var(--body);color:var(--soft);padding:8px 12px;border-radius:999px;text-decoration:underline;text-underline-offset:3px}
+.s-howmore summary::-webkit-details-marker{display:none}
+.s-howmore summary:focus-visible{outline:2px solid var(--acc)}
+.s-howmore ul{list-style:none;margin:8px 0 0;padding:14px 16px;background:#fff;border-radius:16px;text-align:left;display:grid;gap:8px;font-size:14.5px;line-height:1.4;color:var(--soft);box-shadow:0 1px 0 var(--line)}
+.s-howmore b{color:var(--acc)}
+.site[data-how="cards"] .s-howmore{display:none}
 /* plan terms: month track + two icon cards */
 .s-terms{margin:22px auto 0;max-width:680px}
 .s-track{display:grid;grid-template-columns:3fr 3fr 1.3fr;gap:6px;align-items:start}
@@ -412,20 +420,28 @@ body{margin:0;background:#fff}
     <div class="s-chat" aria-label="How it works, as a text conversation">
       <div class="s-chat-top"><span class="av">JM</span><div><b>Jay</b><small>Text message</small></div></div>
       <div class="s-chat-body">
-        <div class="s-step"><b>1</b><div><strong>I build your site first</strong><span>From your Google listing, reviews and photos. No cost, no commitment.</span></div></div>
-        <div class="msg them typing"><p>Hi! I built a website for your shop. Take a look:</p></div>
+        <div class="s-step"><b>1</b><div><strong>I build your site first</strong></div></div>
+        <div class="msg them typing"><p>I built your website. Take a look:</p></div>
         <div class="msg them typing card"><div class="lp"><i></i><div><b>Your Business</b><small>yourbusiness.com</small></div></div></div>
-        <div class="s-step"><b>2</b><div><strong>You check it on your phone</strong><span>Tell me what to change. Changes are done within 2 days.</span></div></div>
-        <div class="msg me"><p>Love it. Can you add our Sunday hours?</p></div>
-        <div class="msg them typing"><p>Done. Take another look.</p></div>
-        <div class="s-step"><b>3</b><div><strong>You pay when it goes live</strong><span>Secure link on launch day, card or bank. Split the setup in 3 if you like. Zelle or check works for the setup.</span></div></div>
-        <div class="msg me"><p>Perfect. Let's go live.</p></div>
-        <div class="msg them typing"><p>Here's your secure payment link. Card, bank, or split the setup in 3.</p></div>
-        <div class="s-step"><b>4</b><div><strong>It's yours</strong><span>Your domain is in your name. Not happy in the first month? You get everything back, setup included.</span></div></div>
+        <div class="s-step"><b>2</b><div><strong>You check it on your phone</strong></div></div>
+        <div class="msg me"><p>Can you add our Sunday hours?</p></div>
+        <div class="msg them typing"><p>Done!</p></div>
+        <div class="s-step"><b>3</b><div><strong>You pay when it goes live</strong></div></div>
+        <div class="msg me"><p>Let's go live.</p></div>
+        <div class="msg them typing"><p>Here's your payment link.</p></div>
+        <div class="s-step"><b>4</b><div><strong>It's yours</strong></div></div>
         <div class="msg them typing live"><p><span class="ld" aria-hidden="true"></span>You're live at yourbusiness.com</p></div>
-        <div class="msg me"><p>Thank you!!</p></div>
       </div>
     </div>
+    <details class="s-howmore">
+      <summary>Details</summary>
+      <ul>
+        <li><b>1.</b> I build it from your Google listing, reviews and photos. No cost, no commitment.</li>
+        <li><b>2.</b> Tell me what to change. Changes are done within 2 days.</li>
+        <li><b>3.</b> Secure link on launch day, card or bank. Split the setup in 3 if you like. Zelle or check works for the setup.</li>
+        <li><b>4.</b> Your domain is in your name. Not happy in the first month? You get everything back, setup included.</li>
+      </ul>
+    </details>
     <ol class="s-steps">
       <li><div><b>I build your site first</b><span>From your Google listing, reviews and photos. No cost, no commitment.</span></div></li>
       <li><div><b>You check it on your phone</b><span>Tell me what to change. Changes are done within 2 days.</span></div></li>
@@ -492,8 +508,8 @@ body{margin:0;background:#fff}
       <details><summary>Do I have to do anything technical?</summary><p>No. I build it, host it and keep it updated. When you want something changed, you text me.</p></details>
       <details><summary>How long does it take?</summary><p>Once you OK it, it's live in about 2 business days. If your package includes a photo shoot, it's live about 2 business days after the shoot.</p></details>
       <details><summary>What does the monthly cover?</summary><p>Hosting, your domain, fixes and updates, and small changes like hours, holiday hours, promos and discounts, done within 2 business days.</p></details>
-      <details><summary>Who owns the website?</summary><p>You do. Your domain is registered in your name, so it stays yours even if you leave. Every plan runs at least 3 months, and whenever it ends, you get a free copy of your site files.</p></details>
-      <details><summary>What if I don't like it?</summary><p>You don't pay anything until it's live and you like it. Not happy in the first month? You get everything back, setup included. Not happy in month 2 or 3? We refund your plan fees for months 2 and 3. After 3 months, cancel anytime.</p></details>
+      <details><summary>Who owns the website?</summary><p>You do. Your domain is registered in your name, so it stays yours even if you leave. Every plan runs at least 3 months. If you leave after that, you get a free copy of your site files.</p></details>
+      <details><summary>What if I don't like it?</summary><p>You don't pay anything until it's live and you like it. Not happy in the first month? You get everything back, setup included. Not happy in month 2 or 3? We refund your plan fees for months 2 and 3, the site comes down, and you owe nothing more. Your domain stays yours. After 3 months, cancel anytime.</p></details>
       <details><summary>Can you guarantee more customers?</summary><p>No, and anyone who does is guessing. What I promise is a fast, good looking site that makes it easy for people to find you and reach you.</p></details>
     </div>
   </section>
